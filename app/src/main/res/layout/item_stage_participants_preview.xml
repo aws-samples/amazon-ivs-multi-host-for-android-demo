@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/stage_radius_big">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/participant_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/stage_black">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/stage_black"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_1_mask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:cardBackgroundColor="@color/stage_gray_dark"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintStart_toStartOf="@id/participant_1"
+            app:layout_constraintTop_toTopOf="@id/participant_1"
+            app:layout_constraintEnd_toEndOf="@id/participant_1"
+            app:layout_constraintBottom_toBottomOf="@id/participant_1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/participant1avatar"
+                    android:layout_width="@dimen/stage_size_large"
+                    android:layout_height="@dimen/stage_size_large"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_foreground" />
+
+                <TextView
+                    android:id="@+id/participant1name"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/stage_margin_tiny"
+                    tools:text="User B" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/stage_margin_small"
+            android:layout_marginBottom="@dimen/stage_margin_small"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/stage_black"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintBottom_toTopOf="@id/participant_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/participant_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_2_mask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/stage_gray_dark"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintStart_toStartOf="@id/participant_2"
+            app:layout_constraintTop_toTopOf="@id/participant_2"
+            app:layout_constraintEnd_toEndOf="@id/participant_2"
+            app:layout_constraintBottom_toBottomOf="@id/participant_2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/participant2avatar"
+                    android:layout_width="@dimen/stage_size_large"
+                    android:layout_height="@dimen/stage_size_large"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_foreground" />
+
+                <TextView
+                    android:id="@+id/participant2name"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/stage_margin_tiny"
+                    tools:text="User B" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/stage_margin_small"
+            android:layout_marginTop="@dimen/stage_margin_small"
+            android:layout_marginBottom="@dimen/stage_margin_small"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/stage_black"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/participant_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/participant_1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_3_mask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/stage_gray_dark"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintStart_toStartOf="@id/participant_3"
+            app:layout_constraintTop_toTopOf="@id/participant_3"
+            app:layout_constraintEnd_toEndOf="@id/participant_3"
+            app:layout_constraintBottom_toBottomOf="@id/participant_3">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/participant3avatar"
+                    android:layout_width="@dimen/stage_size_large"
+                    android:layout_height="@dimen/stage_size_large"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_foreground" />
+
+                <TextView
+                    android:id="@+id/participant3name"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/stage_margin_tiny"
+                    tools:text="User B" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/stage_margin_small"
+            android:layout_marginEnd="@dimen/stage_margin_small"
+            android:layout_marginBottom="@dimen/stage_margin_small"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/stage_black"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/participant_3"
+            app:layout_constraintTop_toBottomOf="@id/participant_1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/participant_4_mask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/stage_gray_dark"
+            app:cardCornerRadius="@dimen/stage_radius_big"
+            app:layout_constraintStart_toStartOf="@id/participant_4"
+            app:layout_constraintTop_toTopOf="@id/participant_4"
+            app:layout_constraintEnd_toEndOf="@id/participant_4"
+            app:layout_constraintBottom_toBottomOf="@id/participant_4">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/participant4avatar"
+                    android:layout_width="@dimen/stage_size_large"
+                    android:layout_height="@dimen/stage_size_large"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_foreground" />
+
+                <TextView
+                    android:id="@+id/participant4name"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/stage_margin_tiny"
+                    tools:text="User B" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

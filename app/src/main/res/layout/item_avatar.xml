@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.amazon.ivs.multihostdemo.repository.models.Avatar" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="@dimen/stage_padding_tiny">
+
+        <FrameLayout
+            android:id="@+id/avatar_item"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@{item.isSelected ? @drawable/bg_round_button_yellow : @drawable/bg_round_button_black}"
+            android:elevation="@dimen/stage_elevation_normal" />
+
+        <ImageView
+            android:layout_width="@dimen/stage_size_normal"
+            android:layout_height="@dimen/stage_size_normal"
+            android:layout_centerInParent="true"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:translationZ="5dp"
+            app:loadCircularImage="@{item.url}"
+            tools:src="@drawable/ic_launcher_foreground" />
+
+    </RelativeLayout>
+
+</layout>

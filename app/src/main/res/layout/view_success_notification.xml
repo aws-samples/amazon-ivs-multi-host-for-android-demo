@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="text"
+            type="String" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/success_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/stage_success_color"
+        app:cardCornerRadius="8dp"
+        android:translationZ="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/stage_padding_normal"
+            android:paddingTop="@dimen/stage_margin_tiny"
+            android:paddingEnd="@dimen/stage_padding_normal"
+            android:paddingBottom="@dimen/stage_padding_small">
+
+            <ImageView
+                android:id="@+id/success_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                app:tint="@color/stage_success_notification_title_color"
+                android:src="@drawable/ic_information"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/TextStyle.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/stage_margin_tiny"
+                android:text="@{title}"
+                android:textAllCaps="true"
+                android:textColor="@color/stage_white"
+                android:textSize="12sp"
+                tools:text="Success"
+                app:layout_constraintStart_toEndOf="@id/success_icon"
+                app:layout_constraintTop_toTopOf="@id/success_icon" />
+
+            <TextView
+                style="@style/TextStyle"
+                tools:text="Stage created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/stage_margin_tiny"
+                android:text="@{text}"
+                app:layout_constraintStart_toStartOf="@id/success_icon"
+                app:layout_constraintTop_toBottomOf="@id/success_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

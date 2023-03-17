@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/bg_top_round_corners"
+    android:orientation="vertical"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/grab_item"
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/stage_gray_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/stage_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/stage_padding_large"
+        android:paddingBottom="@dimen/stage_padding_normal"
+        app:justifyContent="space_around"
+        app:layout_constraintBottom_toTopOf="@id/streaming_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/toggle_chat_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_normal"
+            android:src="@drawable/ic_chat" />
+
+        <ImageView
+            android:id="@+id/toggle_mic_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_small"
+            android:src="@drawable/ic_mic" />
+
+        <ImageView
+            android:id="@+id/toggle_video_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_small"
+            android:src="@drawable/ic_videocam" />
+
+        <ImageView
+            android:id="@+id/swap_camera_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_small"
+            android:src="@drawable/ic_swap" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <TextView
+        android:id="@+id/copy_playback_url_button"
+        style="@style/ButtonStyle.Gray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stage_size_medium"
+        android:layout_marginHorizontal="@dimen/stage_margin_medium"
+        android:layout_marginTop="@dimen/stage_margin_medium"
+        android:text="@string/copy_playback_url"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/streaming_button"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stage_size_medium"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/stage_margin_medium"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/streaming_button_text"
+            style="@style/ButtonStyle.Text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/stage_size_medium"
+            android:text="@string/start_streaming" />
+
+        <ProgressBar
+            android:id="@+id/streaming_button_progress_bar"
+            style="@style/ProgressBarStyle.White"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/progress_bar_size_normal"
+            android:layout_height="@dimen/progress_bar_size_normal"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

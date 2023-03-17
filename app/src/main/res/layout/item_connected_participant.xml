@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="participantItem"
+            type="com.amazon.ivs.stagebroadcastmanager.models.ConnectedParticipant" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stage_black_light">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/stage_gray_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/user_icon"
+            android:layout_width="@dimen/stage_size_normal"
+            android:layout_height="@dimen/stage_size_normal"
+            android:layout_marginVertical="@dimen/stage_margin_small"
+            android:layout_marginStart="@dimen/stage_margin_medium"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:loadCircularImage="@{participantItem.iconUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/stage_margin_medium"
+            android:layout_marginEnd="@dimen/stage_margin_medium"
+            android:text="@{participantItem.isLocal ? String.format(@string/participant_self, participantItem.name) : participantItem.name}"
+            app:layout_constraintBottom_toBottomOf="@id/user_icon"
+            app:layout_constraintEnd_toStartOf="@id/participant_icons_layout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/user_icon"
+            app:layout_constraintTop_toTopOf="@id/user_icon"
+            tools:text="User B" />
+
+        <LinearLayout
+            android:id="@+id/participant_icons_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/stage_margin_medium"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/user_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_icon">
+
+            <ImageView
+                android:id="@+id/mic_off_icon"
+                android:layout_width="@dimen/stage_size_normal"
+                android:layout_height="@dimen/stage_size_normal"
+                android:padding="@dimen/stage_padding_small"
+                android:layout_marginEnd="@dimen/stage_margin_very_tiny"
+                android:contentDescription="@null"
+                android:visibility="gone"
+                android:src="@{participantItem.localAudioMuted ? @drawable/ic_mic_off : @drawable/ic_mic}"
+                app:tint="@{participantItem.localAudioMuted ? @color/stage_red : @color/stage_white}" />
+
+            <ImageView
+                android:id="@+id/videocam_off_icon"
+                android:layout_width="@dimen/stage_size_normal"
+                android:layout_height="@dimen/stage_size_normal"
+                android:padding="@dimen/stage_padding_small"
+                android:layout_marginEnd="@dimen/stage_margin_very_tiny"
+                android:contentDescription="@null"
+                android:visibility="gone"
+                android:src="@{participantItem.localVideoStopped ? @drawable/ic_videocam_off : @drawable/ic_videocam}"
+                app:tint="@{participantItem.localVideoStopped ? @color/stage_red_dark : @color/stage_white}" />
+
+            <ImageView
+                android:id="@+id/remove_button"
+                android:layout_width="@dimen/stage_size_normal"
+                android:layout_height="@dimen/stage_size_normal"
+                android:padding="@dimen/stage_padding_small"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_do_not_disturb" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

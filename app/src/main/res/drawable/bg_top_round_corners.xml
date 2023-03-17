@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners
+        android:topLeftRadius="@dimen/stage_radius_big"
+        android:topRightRadius="@dimen/stage_radius_big" />
+    <solid android:color="@color/stage_black_dark_gray" />
+
+</shape>

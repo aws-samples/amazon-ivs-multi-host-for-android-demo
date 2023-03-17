@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/stage_yellow_accent">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/stage_radius_big" />
+            <solid android:color="@color/stage_yellow"/>
+        </shape>
+    </item>
+</ripple>

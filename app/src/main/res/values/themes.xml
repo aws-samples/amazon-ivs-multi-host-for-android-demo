@@ -1,0 +1,123 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.MultiHostDemo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/stage_black</item>
+        <item name="colorPrimaryVariant">@color/stage_black_secondary</item>
+        <item name="colorOnPrimary">@color/stage_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/stage_black</item>
+        <item name="colorSecondaryVariant">@color/stage_black_secondary</item>
+        <item name="colorOnSecondary">@color/stage_white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/stage_black</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/stage_black</item>
+        <item name="android:navigationBarColor">@color/stage_black</item>
+
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
+    </style>
+
+
+    <style name="CustomCardCorners" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance_custom_corners</item>
+    </style>
+
+    <style name="ShapeAppearance_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@color/stage_black</item>
+    </style>
+
+    <style name="TextStyle" parent="Theme.MultiHostDemo">
+        <item name="android:textColor">@color/stage_white</item>
+        <item name="android:textSize">@dimen/stage_text_size_normal</item>
+    </style>
+
+    <style name="TextStyle.Title" parent="TextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/stage_text_size_big</item>
+    </style>
+
+    <style name="TextStyle.Title.Subtitle.Normal" parent="TextStyle.Title">
+        <item name="android:textSize">@dimen/stage_text_size_medium</item>
+    </style>
+
+    <style name="TextStyle.Title.Subtitle.Small" parent="TextStyle.Title">
+        <item name="android:textSize">@dimen/stage_text_size_small</item>
+    </style>
+
+    <style name="TextStyle.Secondary" parent="TextStyle">
+        <item name="android:textColor">@color/stage_gray_light</item>
+        <item name="android:textSize">@dimen/stage_text_size_small</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Theme.MultiHostDemo">
+        <item name="android:textColor">@drawable/tx_color_stateful_black</item>
+        <item name="android:textSize">@dimen/stage_text_size_medium</item>
+        <item name="android:background">@drawable/bg_button_stateful_yellow</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ButtonStyle.Text" parent="Theme.MultiHostDemo">
+        <item name="android:textColor">@drawable/tx_color_stateful_black</item>
+        <item name="android:textSize">@dimen/stage_text_size_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ButtonStyle.Black" parent="ButtonStyle">
+        <item name="android:backgroundTint">@color/stage_black_light</item>
+        <item name="android:textColor">@color/stage_white</item>
+    </style>
+
+    <style name="ButtonStyle.Gray" parent="ButtonStyle">
+        <item name="android:backgroundTint">@color/stage_gray</item>
+        <item name="android:textColor">@color/stage_white</item>
+    </style>
+
+    <style name="ButtonStyle.Black.RedText" parent="ButtonStyle.Black">
+        <item name="android:textColor">@color/stage_red</item>
+    </style>
+
+    <style name="ButtonStyle.Black.YellowText" parent="ButtonStyle.Black">
+        <item name="android:textColor">@color/stage_yellow</item>
+    </style>
+
+    <style name="ButtonStyle.Secondary" parent="TextStyle.Secondary">
+        <item name="android:textColor">@drawable/tx_color_stateful_yellow</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="InputFieldStyle" parent="TextStyle">
+        <item name="android:background">@drawable/bg_pill_gray</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:paddingStart">@dimen/stage_padding_medium</item>
+        <item name="android:paddingEnd">@dimen/stage_padding_medium</item>
+        <item name="android:textColorHint">@color/stage_white</item>
+        <item name="android:theme">@style/EdittextPointerStyle</item>
+    </style>
+
+    <style name="EdittextPointerStyle">
+        <item name="colorControlActivated">@color/stage_white</item>
+    </style>
+
+    <style name="ProgressBarStyle">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateTintMode">src_atop</item>
+        <item name="android:indeterminateTint">@color/stage_yellow</item>
+    </style>
+
+    <style name="ProgressBarStyle.White" parent="ProgressBarStyle">
+        <item name="android:indeterminateTint">@color/stage_white</item>
+    </style>
+
+</resources>

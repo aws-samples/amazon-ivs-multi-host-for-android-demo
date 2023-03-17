@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:padding="@dimen/stage_padding_medium">
+
+    <TextView
+        android:id="@+id/introduce_title"
+        style="@style/TextStyle.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/introduce_yourself"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/introduce_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/stage_size_medium"
+        android:layout_marginTop="@dimen/stage_margin_medium"
+        android:backgroundTint="@color/stage_gray"
+        android:hint="@string/your_name"
+        android:importantForAutofill="no"
+        android:inputType="textCapSentences"
+        android:textColor="@color/stage_white"
+        android:textColorHint="@color/stage_gray"
+        android:textSize="@dimen/stage_text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introduce_title" />
+
+    <TextView
+        android:id="@+id/introduce_avatar_title"
+        style="@style/TextStyle.Title.Subtitle.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/stage_margin_big"
+        android:text="@string/select_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introduce_name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/introduce_avatars"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/stage_margin_small"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introduce_avatar_title"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_avatar" />
+
+    <TextView
+        android:id="@+id/sign_in_button"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stage_size_medium"
+        android:layout_marginTop="@dimen/stage_margin_big"
+        android:text="@string/sign_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introduce_avatars" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

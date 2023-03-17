@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_top_round_corners"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/stage_padding_medium"
+    tools:layout_gravity="bottom">
+
+    <TextView
+        android:id="@+id/how_you_will_look_and_sound"
+        style="@style/TextStyle.Title.Subtitle.Normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/stage_margin_big"
+        android:gravity="center_horizontal"
+        android:text="@string/how_you_will_look_and_sound" />
+
+    <com.amazon.ivs.multihostdemo.ui.stage.StageParticipantPreview
+        android:id="@+id/video_preview_layout_holder"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="@dimen/stage_margin_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stage_title" />
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/video_preview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:layout_marginBottom="@dimen/stage_margin_medium"-->
+<!--        app:cardBackgroundColor="@color/stage_black"-->
+<!--        app:cardCornerRadius="@dimen/stage_radius_big" />-->
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/stage_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rectangle_buttons_gray"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/stage_padding_normal"
+        android:paddingBottom="@dimen/stage_padding_normal"
+        app:justifyContent="center">
+
+        <ImageView
+            android:id="@+id/toggle_mic_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:layout_marginEnd="@dimen/stage_margin_big"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_small"
+            android:src="@drawable/ic_mic" />
+
+        <ImageView
+            android:id="@+id/toggle_video_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:layout_marginEnd="@dimen/stage_margin_big"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_small"
+            android:src="@drawable/ic_videocam" />
+
+        <ImageView
+            android:id="@+id/flip_camera_button"
+            android:layout_width="@dimen/stage_size_medium"
+            android:layout_height="@dimen/stage_size_medium"
+            android:background="@drawable/bg_round_button_gray"
+            android:contentDescription="@null"
+            android:padding="@dimen/stage_padding_small"
+            android:src="@drawable/ic_swap" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/stage_margin_big"
+        android:layout_marginBottom="@dimen/stage_margin_big"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/cancel_button"
+            style="@style/ButtonStyle.Black"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/stage_size_medium"
+            android:layout_marginEnd="@dimen/stage_margin_tiny"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
+
+        <FrameLayout
+            android:id="@+id/join_button"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/stage_size_medium"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/stage_margin_tiny"
+            android:layout_weight="1"
+            android:foregroundGravity="center">
+
+            <TextView
+                android:id="@+id/join_button_text"
+                style="@style/ButtonStyle.Text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/stage_size_medium"
+                android:text="@string/join" />
+
+            <ProgressBar
+                android:id="@+id/join_button_progress_bar"
+                style="@style/ProgressBarStyle.White"
+                android:layout_width="@dimen/progress_bar_size_normal"
+                android:layout_height="@dimen/progress_bar_size_normal"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

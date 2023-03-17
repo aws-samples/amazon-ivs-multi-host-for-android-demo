@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/navigation_introduction">
+
+    <fragment
+        android:id="@+id/navigation_introduction"
+        android:name="com.amazon.ivs.multihostdemo.ui.introduction.IntroductionFragment"
+        tools:layout="@layout/fragment_introduction">
+        <action
+            android:id="@+id/to_web_view"
+            app:destination="@id/navigation_web_view" />
+        <action
+            android:id="@+id/open_introduce_yourself_bottom_sheet"
+            app:destination="@id/navigation_introduce_yourself" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_introduce_yourself"
+        android:name="com.amazon.ivs.multihostdemo.ui.introduction.IntroduceYourselfFragment"
+        tools:layout="@layout/fragment_introduce_yourself">
+        <action
+            android:id="@+id/to_stage_list"
+            app:destination="@id/navigation_stage_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_web_view"
+        android:name="com.amazon.ivs.multihostdemo.ui.introduction.WebViewFragment"
+        tools:layout="@layout/fragment_web_view" />
+
+    <fragment
+        android:id="@+id/navigation_stage"
+        android:name="com.amazon.ivs.multihostdemo.ui.stage.StageFragment"
+        tools:layout="@layout/fragment_stage">
+        <argument
+            android:name="stageNavArgs"
+            app:argType="com.amazon.ivs.multihostdemo.ui.stage.StageNavArgs" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_stage_list"
+        android:name="com.amazon.ivs.multihostdemo.ui.stage_list.StageListFragment"
+        tools:layout="@layout/fragment_stage_list">
+        <action
+            android:id="@+id/to_stage"
+            app:destination="@id/navigation_stage" />
+        <action
+            android:id="@+id/open_join_preview_popover"
+            app:destination="@id/navigation_join_preview_popover" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/navigation_join_preview_popover"
+        android:name="com.amazon.ivs.multihostdemo.ui.stage_list.JoinPreviewPopoverBottomSheet"
+        tools:layout="@layout/bottom_sheet_join_preview_popover">
+        <action
+            android:id="@+id/to_stage"
+            app:destination="@id/navigation_stage" />
+        <argument
+            android:name="groupId"
+            app:argType="string" />
+        <argument
+            android:name="stageName"
+            app:argType="string" />
+    </dialog>
+
+</navigation>

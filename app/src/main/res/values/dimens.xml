@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="stage_margin_very_big">96dp</dimen>
+    <dimen name="stage_margin_big">32dp</dimen>
+    <dimen name="stage_margin_medium">16dp</dimen>
+    <dimen name="stage_margin_small">8dp</dimen>
+    <dimen name="stage_margin_tiny">4dp</dimen>
+    <dimen name="stage_margin_very_tiny">2dp</dimen>
+
+    <dimen name="stage_padding_big">32dp</dimen>
+    <dimen name="stage_padding_large">28dp</dimen>
+    <dimen name="stage_padding_medium">16dp</dimen>
+    <dimen name="stage_padding_normal">12dp</dimen>
+    <dimen name="stage_padding_small">8dp</dimen>
+    <dimen name="stage_padding_tiny">4dp</dimen>
+
+    <dimen name="stage_text_size_big">22sp</dimen>
+    <dimen name="stage_text_size_medium">16sp</dimen>
+    <dimen name="stage_text_size_normal">14sp</dimen>
+    <dimen name="stage_text_size_small">12sp</dimen>
+
+    <dimen name="stage_radius_big">36dp</dimen>
+    <dimen name="stage_radius_medium">24dp</dimen>
+    <dimen name="stage_radius_normal">6dp</dimen>
+
+    <dimen name="stage_elevation_normal">4dp</dimen>
+    <dimen name="stage_stroke_width_normal">3dp</dimen>
+
+    <dimen name="stage_size_small">20dp</dimen>
+    <dimen name="stage_size_normal">42dp</dimen>
+    <dimen name="stage_size_medium">48dp</dimen>
+    <dimen name="stage_size_large">64dp</dimen>
+    <dimen name="stage_size_big">96dp</dimen>
+
+    <dimen name="progress_bar_size_normal">32dp</dimen>
+
+    <dimen name="stage_controls_peek_height">110dp</dimen>
+
+</resources>
