@@ -196,6 +196,7 @@ class StageBroadcastManagerImpl(
             Timber.d("Participant: ${participantInfo.getUsername()} joined the stage")
             if (!participantInfo.isLocal) {
                 _connectedParticipants.updateList {
+                    session?.mixer?.addSlot(createParticipantSlot(participantInfo.participantId))
                     this.add(
                         participantInfo.asParticipantItem(
                             isLocalVideoStopped = false,
@@ -273,9 +274,7 @@ class StageBroadcastManagerImpl(
                         val videoPreview = (stream.device as ImageDevice).getPreviewView(AspectMode.FILL)
                         addParticipantWithPreview(participantInfo.participantId, videoPreview)
 
-                        session?.attachDevice(stream.device)
-                        session?.mixer?.addSlot(createParticipantSlot(participantInfo.participantId, 1))
-                        session?.mixer?.bind(stream.device, participantInfo.participantId)
+                        addStreamToSession(stream, participantInfo.participantId)
                         updateBroadcastBindings()
                     } catch (e: Exception) {
                         Timber.e(e, "Failed to get video preview for participant: ${participantInfo.getUsername()}")
@@ -291,8 +290,7 @@ class StageBroadcastManagerImpl(
                             device = stream.device
                         )
                     }
-                    session?.attachDevice(stream.device)
-                    session?.mixer?.bind(stream.device, participantInfo.participantId)
+                    addStreamToSession(stream, participantInfo.participantId)
                 }
             }
         }
@@ -312,9 +310,7 @@ class StageBroadcastManagerImpl(
                             isLocalVideoStopped = true
                         )
                     }
-                    session?.detachDevice(stream.device)
-                    session?.mixer?.removeSlot(participantInfo.participantId)
-                    session?.mixer?.unbind(stream.device)
+                    removeStreamFromSession(stream)
                     updateBroadcastBindings()
                 }
 
@@ -326,8 +322,7 @@ class StageBroadcastManagerImpl(
                             isLocalAudioMuted = true
                         )
                     }
-                    session?.detachDevice(stream.device)
-                    session?.mixer?.unbind(stream.device)
+                    removeStreamFromSession(stream)
                 }
             }
         }
@@ -428,7 +423,7 @@ class StageBroadcastManagerImpl(
     }
 
     override fun hideVideoOfParticipant(participant: ConnectedParticipant) {
-        // In our case, this will just turn off showing the view in the fragment
+        // TODO: SDK doesn't properly support muting participant stream video so the change is only visual
         _connectedParticipants.updateList {
             val participantIndex = indexOrNull(participant) ?: return@updateList
             this[participantIndex] = this[participantIndex].copy(
@@ -438,7 +433,7 @@ class StageBroadcastManagerImpl(
     }
 
     override fun toggleMuteParticipant(participant: ConnectedParticipant) {
-        // TODO: SDK doesn't properly support muting audio
+        // TODO: SDK doesn't properly support muting participant stream audio so the change is only visual
         _connectedParticipants.updateList {
             val participantIndex = indexOrNull(participant) ?: return@updateList
             this[participantIndex] = this[participantIndex].copy(
@@ -463,7 +458,7 @@ class StageBroadcastManagerImpl(
         Timber.d("Creating broadcast session")
         isPreviewing = isPreview
         val broadcastConfig = BroadcastConfiguration().apply {
-            val cameraSlot = createParticipantSlot(SELF_PARTICIPANT_ID, 1).apply {
+            val cameraSlot = createParticipantSlot(SELF_PARTICIPANT_ID).apply {
                 aspect = AspectMode.FIT
                 preferredVideoInput = Descriptor.DeviceType.CAMERA
                 preferredAudioInput = Descriptor.DeviceType.MICROPHONE
@@ -670,18 +665,32 @@ class StageBroadcastManagerImpl(
         session?.mixer?.removeSlot(participantId)
     }
 
-    private fun createParticipantSlot(name: String, zIndex: Int): Slot =
+    private fun createParticipantSlot(name: String): Slot =
         Slot.with { config ->
             config.name = name
             config.size = STAGE_SIZE
             config.aspect = AspectMode.FILL
             config.position = BroadcastConfiguration.Vec2(0f, 0f)
             config.fillColor = BroadcastConfiguration.Vec4(0f, 0f, 0f, 0f)
-            config.setzIndex(zIndex)
+            config.setzIndex(0)
             return@with config
         }
 
     private fun updateBroadcastBindings() {
         session?.updateSlotLayout(_connectedParticipants.value.map { if (it.isLocal) SELF_PARTICIPANT_ID else it.id })
+    }
+
+    private fun addStreamToSession(stream: StageStream, participantId: String) {
+        val participantSlot = session?.mixer?.slots?.find { it.name == participantId }
+        if (participantSlot == null) {
+            session?.mixer?.addSlot(createParticipantSlot(participantId))
+        }
+        session?.attachDevice(stream.device)
+        session?.mixer?.bind(stream.device, participantId)
+    }
+
+    private fun removeStreamFromSession(stream: StageStream) {
+        session?.detachDevice(stream.device)
+        session?.mixer?.unbind(stream.device)
     }
 }

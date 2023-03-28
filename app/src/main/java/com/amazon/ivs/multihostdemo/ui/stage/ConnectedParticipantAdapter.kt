@@ -17,7 +17,6 @@ private val connectedParticipantDiff = object : DiffUtil.ItemCallback<ConnectedP
         oldItem == newItem
 }
 
-
 class ConnectedParticipantAdapter(
     private val onRemoveParticipantClick: (ConnectedParticipant) -> Unit,
     private val onVideoClick: (ConnectedParticipant) -> Unit,
@@ -45,7 +44,5 @@ class ConnectedParticipantAdapter(
         holder.binding.micOffIcon.setOnClickListener {
             onMuteClick(holder.binding.root.tag as ConnectedParticipant)
         }
-
-
     }
 }
