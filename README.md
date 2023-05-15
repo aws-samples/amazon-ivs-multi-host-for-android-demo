@@ -30,6 +30,7 @@ You must have the `ApiUrl` from the [Amazon IVS Multi-host Serverless Demo](http
 ## More Documentation
 
 - [Amazon IVS Android Broadcast SDK Guide](https://docs.aws.amazon.com/ivs/latest/userguide/broadcast-android.html)
+- [Amazon IVS Android Broadcast SDK Sample code](https://github.com/aws-samples/amazon-ivs-broadcast-android-sample)
 - [More code samples and demos](https://www.ivs.rocks/examples)
 
 ## License
