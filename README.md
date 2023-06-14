@@ -25,7 +25,7 @@ You must have the `ApiUrl` from the [Amazon IVS Multi-host Serverless Demo](http
 ## Known Issues
 
 - This app has only been tested on devices running Android 13 and API level 33 or later. While this app may work on older versions of Android, they have not been extensively tested.
-- A list of known issues for the Amazon IVS Broadcast SDK is available on the following page: [Amazon IVS Broadcast SDK: Android Guide](https://docs.aws.amazon.com/ivs/latest/userguide/broadcast-android.html#broadcast-android-issues-multiple-hosts)
+- A list of known issues for the Amazon IVS Broadcast SDK is available on the following page: [Amazon IVS Broadcast SDK: Android Guide](https://docs.aws.amazon.com/ivs/latest/userguide/broadcast-android-issues.html)
 
 ## More Documentation
 
