@@ -19,11 +19,7 @@ private const val MASK_TAG = "Mask_"
 
 class StageParticipantPreview(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {
     private var participantAmount = 0
-    private var binding: ItemStageParticipantsPreviewBinding
-
-    init {
-        binding = ItemStageParticipantsPreviewBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+    private var binding = ItemStageParticipantsPreviewBinding.inflate(LayoutInflater.from(context), this, true)
 
     fun addParticipant(
         view: View?,

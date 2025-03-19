@@ -45,7 +45,7 @@ class JoinPreviewPopoverBottomSheet : BottomSheetDialogFragment() {
         viewModel.reloadCameraPreview()
     }
 
-    private fun setupView() = with(binding) {
+    private fun setupView() {
         val behavior: BottomSheetBehavior<*> = (dialog as BottomSheetDialog).behavior
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
         behavior.skipCollapsed = true

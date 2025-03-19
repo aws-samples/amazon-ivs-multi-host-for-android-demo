@@ -1,35 +1,29 @@
 package com.amazon.ivs.multihostdemo.repository
 
 import com.amazon.ivs.multihostdemo.common.AVATARS
-import com.amazon.ivs.multihostdemo.repository.cache.SecuredPreferenceProvider
-import com.amazon.ivs.multihostdemo.repository.models.Avatar
+import com.amazon.ivs.multihostdemo.repository.cache.PreferenceProvider
 import java.util.UUID
+import javax.inject.Inject
+import javax.inject.Singleton
 
-interface UserRepository {
-    val username: String
-    val userAvatar: Avatar
-    fun saveUserName(username: String)
-    fun saveAvatarUrl(url: String)
-    fun generateUserId()
-}
+@Singleton
+class UserRepository @Inject constructor(
+    private val preferenceProvider: PreferenceProvider,
+) {
+    val username get() = preferenceProvider.username ?: ""
+    val userAvatar
+        get() = AVATARS.firstOrNull { it.url == preferenceProvider.avatarUrl } ?: AVATARS[0]
 
-class UserRepositoryImpl(
-    private val securedPreferenceProvider: SecuredPreferenceProvider,
-) : UserRepository {
-    override val username get() = securedPreferenceProvider.username ?: ""
-    override val userAvatar
-        get() = AVATARS.firstOrNull { it.url == securedPreferenceProvider.avatarUrl } ?: AVATARS[0]
-
-    override fun saveUserName(username: String) {
-        securedPreferenceProvider.username = username
+    fun saveUserName(username: String) {
+        preferenceProvider.username = username
     }
 
-    override fun saveAvatarUrl(url: String) {
-        securedPreferenceProvider.avatarUrl = url
+    fun saveAvatarUrl(url: String) {
+        preferenceProvider.avatarUrl = url
     }
 
-    override fun generateUserId() {
-        securedPreferenceProvider.userId = UUID.randomUUID()
+    fun generateUserId() {
+        preferenceProvider.userId = UUID.randomUUID()
             .toString()
             .replace("-", "")
     }

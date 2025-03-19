@@ -4,33 +4,34 @@ import com.amazon.ivs.multihostdemo.repository.models.StageChatMessage
 import com.amazon.ivs.multihostdemo.repository.models.toStageChatMessage
 import com.amazon.ivs.multihostdemo.repository.networking.models.responses.chat.ChatSdkError
 import com.amazon.ivs.stagebroadcastmanager.common.updateList
-import com.amazonaws.ivs.chat.messaging.*
-import com.amazonaws.ivs.chat.messaging.entities.*
+import com.amazonaws.ivs.chat.messaging.ChatRoom
+import com.amazonaws.ivs.chat.messaging.ChatRoomListener
+import com.amazonaws.ivs.chat.messaging.ChatToken
+import com.amazonaws.ivs.chat.messaging.DeleteMessageCallback
+import com.amazonaws.ivs.chat.messaging.DisconnectReason
+import com.amazonaws.ivs.chat.messaging.DisconnectUserCallback
+import com.amazonaws.ivs.chat.messaging.SendMessageCallback
+import com.amazonaws.ivs.chat.messaging.entities.ChatError
+import com.amazonaws.ivs.chat.messaging.entities.ChatEvent
+import com.amazonaws.ivs.chat.messaging.entities.ChatMessage
+import com.amazonaws.ivs.chat.messaging.entities.DeleteMessageEvent
+import com.amazonaws.ivs.chat.messaging.entities.DisconnectUserEvent
 import com.amazonaws.ivs.chat.messaging.logger.ChatLogLevel
 import com.amazonaws.ivs.chat.messaging.requests.DeleteMessageRequest
 import com.amazonaws.ivs.chat.messaging.requests.DisconnectUserRequest
 import com.amazonaws.ivs.chat.messaging.requests.SendMessageRequest
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import timber.log.Timber
-import java.util.*
+import java.util.UUID
+import javax.inject.Inject
+import javax.inject.Singleton
 
-interface ChatManager {
-    val messages: StateFlow<List<StageChatMessage>>
-    val onError: Flow<ChatSdkError>
-    val onRoomConnected: Flow<Unit>
-    val onRemoteKicked: Flow<String>
-    val onJoinRequestResponse: Flow<Boolean>
-    val onLocalKicked: Flow<Unit>
-    fun joinRoom(arn: String, chatToken: ChatToken)
-    fun connect()
-    fun sendMessage(chatMessageRequest: SendMessageRequest)
-    fun deleteMessage(id: String)
-    fun disconnectUser(userId: String)
-    fun onResume()
-}
-
-class ChatManagerImpl : ChatManager {
+@Singleton
+class ChatManager @Inject constructor() {
     private var showDisconnectError = false
     private var chatRoom: ChatRoom? = null
     private var roomListener: ChatRoomListener? = null
@@ -45,15 +46,15 @@ class ChatManagerImpl : ChatManager {
     private val _onLocalKicked = Channel<Unit>()
     private val _messages = MutableStateFlow(emptyList<StageChatMessage>())
 
-    override val messages = _messages.asStateFlow()
-    override val onRoomConnected = _onRoomConnected.receiveAsFlow()
-    override val onRemoteKicked = _onRemoteKicked.receiveAsFlow()
-    override val onJoinRequestResponse = _onJoinRequestResponse.receiveAsFlow()
-    override val onError = _onError.receiveAsFlow()
+    val messages = _messages.asStateFlow()
+    val onRoomConnected = _onRoomConnected.receiveAsFlow()
+    val onRemoteKicked = _onRemoteKicked.receiveAsFlow()
+    val onJoinRequestResponse = _onJoinRequestResponse.receiveAsFlow()
+    val onError = _onError.receiveAsFlow()
 
-    override val onLocalKicked = _onLocalKicked.receiveAsFlow()
+    val onLocalKicked = _onLocalKicked.receiveAsFlow()
 
-    override fun joinRoom(arn: String, chatToken: ChatToken) {
+    fun joinRoom(arn: String, chatToken: ChatToken) {
         this.arn = arn
         val region = arn.split(":")[3]
         Timber.d("Initializing chat room: [$region]")
@@ -101,7 +102,7 @@ class ChatManagerImpl : ChatManager {
                 _messages.updateList {
                     // Per the business requirement of only keeping 50 chat messages in
                     if (count() == 50) {
-                        removeFirst()
+                        removeAt(0)
                     }
                     add(message.toStageChatMessage())
                 }
@@ -125,12 +126,12 @@ class ChatManagerImpl : ChatManager {
     /**
      * Connection must be done in OnResume
      */
-    override fun connect() {
+    fun connect() {
         Timber.d("Connecting to chat: ${chatRoom?.state}")
         chatRoom?.connect()
     }
 
-    override fun sendMessage(chatMessageRequest: SendMessageRequest) {
+    fun sendMessage(chatMessageRequest: SendMessageRequest) {
         if (chatRoom?.state != ChatRoom.State.CONNECTED) {
             _onError.trySend(ChatSdkError.MESSAGE_SEND_FAILED)
             return
@@ -151,7 +152,7 @@ class ChatManagerImpl : ChatManager {
         })
     }
 
-    override fun deleteMessage(id: String) {
+    fun deleteMessage(id: String) {
         if (chatRoom?.state != ChatRoom.State.CONNECTED) {
             _onError.trySend(ChatSdkError.MESSAGE_DELETE_FAILED)
             return
@@ -172,7 +173,7 @@ class ChatManagerImpl : ChatManager {
         })
     }
 
-    override fun disconnectUser(userId: String) {
+    fun disconnectUser(userId: String) {
         if (chatRoom?.state != ChatRoom.State.CONNECTED) {
             _onError.trySend(ChatSdkError.CONNECTION_FAILED)
             return
@@ -196,7 +197,7 @@ class ChatManagerImpl : ChatManager {
         })
     }
 
-    override fun onResume() {
+    fun onResume() {
         Timber.d("View resumed: connect to room")
         if (!isConnected) {
             chatRoom?.connect()

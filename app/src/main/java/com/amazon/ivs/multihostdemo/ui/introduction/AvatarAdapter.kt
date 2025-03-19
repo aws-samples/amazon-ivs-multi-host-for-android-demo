@@ -17,7 +17,7 @@ private val avatarDiff = object : DiffUtil.ItemCallback<Avatar>() {
 }
 
 class AvatarAdapter(
-    private val onAvatarClicked: (AvatarUIModel: Avatar) -> Unit
+    private val onAvatarClicked: (Avatar) -> Unit
 ) : ListAdapter<Avatar, AvatarAdapter.ViewHolder>(avatarDiff) {
     inner class ViewHolder(val binding: ItemAvatarBinding) : RecyclerView.ViewHolder(binding.root)
 

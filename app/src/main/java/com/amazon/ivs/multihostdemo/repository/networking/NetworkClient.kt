@@ -32,7 +32,7 @@ class NetworkClient {
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(BuildConfig.ApiUrl)
+            .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }

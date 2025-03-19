@@ -7,6 +7,8 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amazon.ivs.multihostdemo.common.POPUP_TIMEOUT
@@ -26,18 +28,18 @@ fun View.fadeInAndOut(delay: Long = POPUP_TIMEOUT) = launchMain {
     animateVisibility(false)
 }
 
-fun View.animateVisibility(isVisible: Boolean, orWhat: Int = GONE, onAnimEnd: () -> Unit = {}) {
-    if ((visibility == VISIBLE && isVisible) || (visibility == GONE && !isVisible)) {
+fun View.animateVisibility(visible: Boolean, orWhat: Int = GONE, onAnimEnd: () -> Unit = {}) {
+    if ((isVisible && visible) || (isGone && !visible)) {
         onAnimEnd()
         return
     }
     setVisibleOr(true)
-    alpha = if (isVisible) ALPHA_GONE else ALPHA_VISIBLE
-    animate().setDuration(500L).alpha(if (isVisible) ALPHA_VISIBLE else ALPHA_GONE)
+    alpha = if (visible) ALPHA_GONE else ALPHA_VISIBLE
+    animate().setDuration(500L).alpha(if (visible) ALPHA_VISIBLE else ALPHA_GONE)
         .setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                setVisibleOr(isVisible, orWhat)
+                setVisibleOr(visible, orWhat)
                 onAnimEnd()
             }
         }).start()

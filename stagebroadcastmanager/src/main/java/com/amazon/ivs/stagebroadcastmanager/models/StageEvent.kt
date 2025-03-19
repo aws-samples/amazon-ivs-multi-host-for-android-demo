@@ -13,6 +13,6 @@ sealed interface StageEvent {
 
     data class RemoveParticipantView(val participantId: String) : StageEvent
     data class PreviewUpdated(val updatedView: View, val participantId: String) : StageEvent
-    object StageClosed : StageEvent
-    object StageDisconnected : StageEvent
+    data object StageClosed : StageEvent
+    data object StageDisconnected : StageEvent
 }
