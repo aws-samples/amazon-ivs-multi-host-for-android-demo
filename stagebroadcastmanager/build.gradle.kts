@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.amazon.ivs.stagebroadcastmanager"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 28
