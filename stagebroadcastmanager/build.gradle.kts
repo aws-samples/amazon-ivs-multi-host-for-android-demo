@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.amazon.ivs.stagebroadcastmanager"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 28
@@ -35,6 +35,10 @@ dependencies {
     implementation(libs.timber)
 
     // Stages SDK
-    // noinspection UseTomlInstead
-    api("com.amazonaws:ivs-broadcast:1.28.1:stages@aar")
+    implementation(libs.ivs.broadcast) {
+        artifact {
+            classifier = "stages"
+            type = "aar"
+        }
+    }
 }
